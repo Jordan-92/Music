@@ -17,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
                 flex
                 w-full
                 rounded-md
-                bg-neutral-700
+                bg-button_and_input
                 border
                 border-transparent
                 px-3
@@ -27,7 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
                 file:bg-transparent
                 file:text-sm
                 file:font-medium
-                placeholder:text-neutral-400
+                placeholder:text-secondary
                 disabled:cursor-not-allowed
                 disabled:opacity-50
                 focus:outline-none

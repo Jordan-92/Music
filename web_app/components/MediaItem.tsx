@@ -1,7 +1,7 @@
 "use client"
 
 import useLoadImage from "@/hooks/useLoadImage";
-import { Song } from "@/types"
+import { Song } from "@/types";
 import Image from "next/image";
 
 interface MediaItemProps {
@@ -13,7 +13,7 @@ const MediaItem: React.FC<MediaItemProps> = ({
     data,
     onClick
 }) => {
-    const imageUrl = useLoadImage(data);
+    // const imageUrl = useLoadImage(data);
 
     const handleClick = () => {
         if (onClick) {
@@ -29,7 +29,7 @@ const MediaItem: React.FC<MediaItemProps> = ({
                 items-center
                 gap-x-3
                 cursor-pointer
-                hover:bg-neutral-800/50
+                hover:bg-brightened/5
                 w-full
                 p-2
                 rounded-md
@@ -46,7 +46,7 @@ const MediaItem: React.FC<MediaItemProps> = ({
             >
                 <Image
                     fill
-                    src={imageUrl || '/images/liked.png'}
+                    src={data.image_path || '/images/no_image_path.jpg'}
                     alt="Media Item"
                     className="object-cover"
                 />
@@ -57,10 +57,10 @@ const MediaItem: React.FC<MediaItemProps> = ({
                 gap-y-1
                 overflow-hidden
             ">
-                <p className="text-white truncate">
+                <p className="text-primary truncate">
                     {data.title}
                 </p>
-                <p className="text-neutral-400 text-sm truncate">
+                <p className="text-secondary text-sm truncate">
                     {data.author}
                 </p>
             </div>

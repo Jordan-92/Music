@@ -1,15 +1,10 @@
 "use client";
 
-import FilterButton from "@/components/FilterButton";
-import LikeButton from "@/components/LikeButton";
 import LikedSongs from "@/components/LikedSongs";
-import MediaItem from "@/components/MediaItem";
 import useAuthModal from "@/hooks/useAuthModal";
-import useOnPlay from "@/hooks/useOnPlay";
 import { useUser } from "@/hooks/useUser";
 import { Song } from "@/types";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface LikedContentProps {
     songs: Song[];
@@ -39,7 +34,7 @@ const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
     return (
         <div
             className="
-                bg-neutral-900
+                bg-background
                 rounded-lg
                 h-full
                 w-full
@@ -55,7 +50,7 @@ const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
                     items-center
                     rounded-full
                     overflow-hidden
-                    bg-neutral-100/10
+                    bg-brightened/10
                     flex
                 "
             >
@@ -70,13 +65,9 @@ const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
                                 w-1/4
                                 ${index === 0 ? 'rounded-l-full' : ''}
                                 ${index === languages.length - 1 ? 'rounded-r-full' : ''}
-                                ${isSelected ? 'bg-blue-600 text-white' : 'hover:bg-neutral-100/20'}
+                                ${isSelected ? 'bg-gradient2 text-primary' : 'hover:bg-button/10'}
                                 transition
                             `}
-                            style={{
-                                backgroundColor: isSelected ? '#267BF1' : 'initial',
-                                color: isSelected ? 'white' : 'initial',
-                            }}
                         >
                             {language}
                         </button>

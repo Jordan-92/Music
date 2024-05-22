@@ -16,11 +16,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CurrentUser _currentUser;
   final AppUserCubit _appUserCubit;
   AuthBloc(
-      {required UserSignUp userSingUp,
+      {required UserSignUp userSignUp,
       required UserLogin userLogin,
       required CurrentUser currentUser,
       required AppUserCubit appUserCubit})
-      : _userSignUp = userSingUp,
+      : _userSignUp = userSignUp,
         _userLogin = userLogin,
         _currentUser = currentUser,
         _appUserCubit = appUserCubit,

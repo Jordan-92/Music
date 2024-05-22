@@ -15,7 +15,7 @@ const PageContent: React.FC<PageContentProps> = ({
 
     if (songs.length === 0) {
         return (
-            <div className="mt-4 text-neutral-400">
+            <div className="mt-4 text-secondary">
                 No songs available.
             </div> 
         )

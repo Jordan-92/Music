@@ -26,15 +26,25 @@ class _LikedPageState extends State<LikedPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: GradientText(
-          'Liked Songs',
-          style: const TextStyle(
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-          ),
-          colors: const [
-            AppPallete.gradient1,
-            AppPallete.gradient2,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/liked.png',
+              height: 60.0,
+              width: 60.0,
+            ),
+            const SizedBox(width: 8.0),
+            GradientText(
+              'Liked Songs',
+              style: const TextStyle(
+                fontSize: 32.0,
+                fontWeight: FontWeight.bold,
+              ),
+              colors: const [
+                AppPallete.gradient1,
+                AppPallete.gradient2,
+              ],
+            ),
           ],
         ),
       ),

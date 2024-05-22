@@ -23,8 +23,6 @@ const getSongsByTitle = async (title: string): Promise<Song[]> => {
             console.log(error);
         }
 
-        console.log(data)
-
         return (data as any) || [];
 };
 

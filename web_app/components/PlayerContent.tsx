@@ -123,12 +123,12 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                         items-center
                         justify-center
                         rounded-full
-                        bg-white
+                        bg-primary
                         p-1
                         cursor-pointer
                     "
                 >
-                    <Icon size={30} className="text-black"/>
+                    <Icon size={30} className="text-tertiary"/>
                 </div>
             </div>
             <div
@@ -147,9 +147,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                 onClick={onPlayPrevious}
                     size={30}
                     className="
-                        text-neutral-400
+                        text-secondary
                         cursor-pointer
-                        hover:text-white
+                        hover:text-primary
                         transition
                     "
                 />
@@ -162,20 +162,20 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                         items-center
                         justify-center
                         rounded-full
-                        bg-white
+                        bg-primary
                         p-1
                         cursor-pointer
                     "
                 >
-                    <Icon size={30} className="text-black"/>
+                    <Icon size={30} className="text-tertiary"/>
                 </div>
                 <AiFillStepForward
                 onClick={onPlayNext}
                     size={30}
                     className="
-                        text-neutral-400
+                        text-secondary
                         cursor-pointer
-                        hover:text-white
+                        hover:text-primary
                         transition
                     "
                 />

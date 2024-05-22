@@ -13,7 +13,7 @@ export default async function Home() {
   return (
     <div
       className="
-      bg-neutral-900
+      bg-background
       rounded-lg
       h-full
       w-full
@@ -25,7 +25,7 @@ export default async function Home() {
         <div className="mb-2">
           <h1
             className="
-              text-white
+              text-primary
               text-3xl
               font-semibold
             "
@@ -53,7 +53,7 @@ export default async function Home() {
       </Header>
       <div className="mt-2 mb-7 px-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-white text-2xl font-semibold">Newest songs</h1>
+          <h1 className="text-primary text-2xl font-semibold">Newest songs</h1>
         </div>
         <PageContent songs={songs} />
       </div>

@@ -9,7 +9,7 @@ import Button from "./Button";
 import useAuthModal from "@/hooks/useAuthModal";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useUser } from "@/hooks/useUser";
-import { FaUserAlt } from "react-icons/fa"; // TODO: display here profile picture if there is one
+import Image from "next/image";
 import toast from "react-hot-toast";
 
 interface HeaderProps {
@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         `
                 h-fit
                 bg-gradient-to-b
-                from-blue-800
+                from-gradient1
                 p-6
             `,
         className,
@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             onClick={() => router.back()}
             className="
                             rounded-full
-                            bg-black
+                            bg-background0
                             flex
                             items-center
                             justify-center
@@ -76,13 +76,13 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                             transition
                         "
           >
-            <RxCaretLeft className="text-white" size={35} />
+            <RxCaretLeft className="text-primary" size={35} />
           </button>
           <button
             onClick={() => router.back()}
             className="
                             rounded-full
-                            bg-black
+                            bg-background0
                             flex
                             items-center
                             justify-center
@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                             transition
                         "
           >
-            <RxCaretRight className="text-white" size={35} />
+            <RxCaretRight className="text-primary" size={35} />
           </button>
         </div>
         <div className="flex md:hidden gap-x-2 items-center">
@@ -99,7 +99,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             className="
                             rounded-full
                             p-2
-                            bg-white
+                            bg-primary
                             flex
                             items-center
                             justify-center
@@ -107,14 +107,14 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                             transition
                         "
           >
-            <HiHome className="text-black" size={20} />
+            <HiHome className="text-tertiary" size={20} />
           </button>
           <button
             onClick={() => router.push("/search")}
             className="
                             rounded-full
                             p-2
-                            bg-white
+                            bg-primary
                             flex
                             items-center
                             justify-center
@@ -122,7 +122,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                             transition
                         "
           >
-            <BiSearch className="text-black" size={20} />
+            <BiSearch className="text-tertiary" size={20} />
           </button>
         </div>
         <div
@@ -135,14 +135,20 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         >
           {user ? (
             <div className="flex gap-x-4 items-center">
-              <Button onClick={handleLogout} className="bg-white px-6 py-2">
+              <Button onClick={handleLogout} className="bg-primary px-6 py-2">
                 Logout
               </Button>
               <Button
                 onClick={() => router.push("/account")}
-                className="bg-white"
+                className="relative w-12 h-10"
               >
-                <FaUserAlt />
+                <Image
+                    src={'/images/no_avatar_path.png'}
+                    alt="Avatar"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-full"
+                />
               </Button>
             </div>
           ) : (
@@ -152,7 +158,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                   onClick={authModal.onOpen}
                   className="
                                         bg-transparent
-                                        text-neutral-300
+                                        text-primary/80
                                         font-medium
                                     "
                 >
@@ -163,7 +169,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                 <Button
                   onClick={authModal.onOpen}
                   className="
-                                        bg-white
+                                        bg-primary
                                         px-6
                                         py-2
                                     "

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/music/presentation/pages/liked/liked_page.dart';
+import 'package:flutter_app/features/song/presentation/pages/liked/liked_page.dart';
 
 class LikedSongsButton extends StatelessWidget {
   const LikedSongsButton({super.key});
@@ -29,10 +29,10 @@ class LikedSongsButton extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 10.0),
+          const SizedBox(width: 16.0),
           const Text(
             'Liked songs',
-            style: TextStyle(fontSize: 18.0),
+            style: TextStyle(fontSize: 20.0),
           ),
         ],
       ),

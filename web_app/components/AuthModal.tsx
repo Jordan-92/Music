@@ -10,6 +10,7 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import useAuthModal from "@/hooks/useAuthModal";
 import { useEffect } from "react";
+import colors from "@/colors";
 
 const AuthModal = () => {
   const supabaseClient = useSupabaseClient();
@@ -48,8 +49,8 @@ const AuthModal = () => {
           variables: {
             default: {
               colors: {
-                brand: "#404040",
-                brandAccent: "#22c55e",
+                brand: colors.button_and_input,
+                brandAccent: colors.gradient1,
               },
             },
           },

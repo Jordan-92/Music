@@ -1,3 +1,9 @@
+export interface Settings {
+  id: string;
+  name: string;
+  avatar_path: string;
+}
+
 export interface Song {
   id: string;
   user_id: string;
@@ -5,7 +11,7 @@ export interface Song {
   title: string;
   song_path: string;
   image_path: string;
-  language : string;
+  language: string;
 }
 
 export interface Playlist {

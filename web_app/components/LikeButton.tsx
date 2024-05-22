@@ -1,5 +1,6 @@
 "use client";
 
+import colors from "@/colors";
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 import { useSessionContext } from "@supabase/auth-helpers-react";
@@ -87,7 +88,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
             onClick={handleLike}
             className="hover:opacity-75 transition"
         >
-            <Icon color={isLiked ? '#267BF1' : 'white'} size={25} />
+            <Icon color={isLiked ? colors.gradient2 : colors.primary} size={25} />
         </button>
     )
 }

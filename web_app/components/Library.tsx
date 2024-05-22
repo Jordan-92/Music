@@ -46,10 +46,10 @@ const Library: React.FC<LibraryProps> = ({
                         gap-x-2
                     "
         >
-          <TbDownload className="text-neutral-400" size={26} />
+          <TbDownload className="text-secondary" size={26} />
           <p
             className="
-                            text-neutral-400
+                            text-secondary
                             font-medium
                             text-md
                         "
@@ -61,9 +61,9 @@ const Library: React.FC<LibraryProps> = ({
           onClick={onClick}
           size={20}
           className="
-                        text-neutral-400
+                        text-secondary
                         cursor-pointer
-                        hover:text-white
+                        hover:text-primary
                         transition
                     "
         />

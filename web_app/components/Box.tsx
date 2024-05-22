@@ -1,4 +1,3 @@
-import { FiTable } from "react-icons/fi";
 import { twMerge } from "tailwind-merge";
 
 interface BoxProps {
@@ -11,7 +10,7 @@ const Box: React.FC<BoxProps> = ({ children, className }) => {
     <div
       className={twMerge(
         `
-                bg-neutral-900
+                bg-background
                 rounded-lg
                 h-fit
                 w-full

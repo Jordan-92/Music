@@ -45,7 +45,7 @@ const LikedSongs: React.FC<LikedSongsProps> = ({ songs, languages }) => {
                     gap-y-2
                     w-full
                     px-6
-                    text-neutral-400
+                    text-secondary
                 "
             >
                 No liked songs.

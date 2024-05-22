@@ -47,10 +47,10 @@ const Playlist: React.FC<PlaylistProps> = ({
                         gap-x-2
                     "
         >
-          <TbPlaylist className="text-neutral-400" size={26} />
+          <TbPlaylist className="text-secondary" size={26} />
           <p
             className="
-                            text-neutral-400
+                            text-secondary
                             font-medium
                             text-md
                         "
@@ -62,9 +62,9 @@ const Playlist: React.FC<PlaylistProps> = ({
           onClick={onClick}
           size={20}
           className="
-                        text-neutral-400
+                        text-secondary
                         cursor-pointer
-                        hover:text-white
+                        hover:text-primary
                         transition
                     "
         />

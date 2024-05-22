@@ -8,10 +8,11 @@ import PayerContent from "./PlayerContent";
 const Player = () => {
     const player = usePlayer();
     const { song } = useGetSongById(player.activeId);
+    // TODO: Count how many times a song is played
 
-    const songUrl = useLoadSongUrl(song!);
+    // const songUrl = useLoadSongUrl(song!);
 
-    if(!song || !songUrl || !player.activeId) {
+    if(!song || !song.song_path || !player.activeId) {
         return null;
     }
 
@@ -20,7 +21,7 @@ const Player = () => {
             className="
                 fixed
                 bottom-0
-                bg-black
+                bg-player
                 w-full
                 py-2
                 h-[80px]
@@ -28,9 +29,9 @@ const Player = () => {
             "
         >
             <PayerContent
-                key={songUrl}
+                key={song.song_path}
                 song={song}
-                songUrl={songUrl}
+                songUrl={song.song_path}
             />
         </div>
     );

@@ -14,7 +14,7 @@ const SongItem: React.FC<SongItemProps> = ({
     data,
     onClick
 }) => {
-    const imagePath = useLoadImage(data);
+    // const imagePath = useLoadImage(data);
     
     return (
         <div
@@ -29,9 +29,9 @@ const SongItem: React.FC<SongItemProps> = ({
                 rounded-md
                 overflow-hidden
                 gap-x-4
-                bg-neutral-400/5
+                bg-secondary/5
                 cursor-pointer
-                hover:bg-neutral-400/10
+                hover:bg-secondary/10
                 transition
                 p-3
             "
@@ -48,7 +48,7 @@ const SongItem: React.FC<SongItemProps> = ({
             >
                 <Image
                     className="object-cover"
-                    src={imagePath || '/images/liked.png'}
+                    src={data.image_path || '/images/no_image_path.jpg'}
                     fill
                     alt='Image'
                 />
@@ -59,7 +59,7 @@ const SongItem: React.FC<SongItemProps> = ({
                 </p>
                 <p
                     className="
-                        text-neutral-400
+                        text-secondary
                         text-sm
                         pb-4
                         w-full
