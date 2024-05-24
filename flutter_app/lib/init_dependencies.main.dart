@@ -11,25 +11,25 @@ Future<void> initDependencies() async {
     anonKey: AppSecrets.supabaseAnonKey,
   );
 
-  // Hive.defaultDirectory = (await getApplicationDocumentsDirectory()).path;
+  Hive.defaultDirectory = (await getApplicationDocumentsDirectory()).path;
 
   serviceLocator.registerLazySingleton(() => supabase.client);
 
-  // serviceLocator.registerLazySingleton(
-  //   () => Hive.box(name: 'songs'),
-  // );
+  serviceLocator.registerLazySingleton(
+    () => Hive.box(name: 'songs'),
+  );
 
-  // serviceLocator.registerFactory(() => InternetConnection());
+  serviceLocator.registerFactory(() => InternetConnection());
 
   // core
   serviceLocator.registerLazySingleton(
     () => AppUserCubit(),
   );
-  // serviceLocator.registerFactory<ConnectionChecker>(
-  //   () => ConnectionCheckerImpl(
-  //     serviceLocator(),
-  //   ),
-  // );
+  serviceLocator.registerFactory<ConnectionChecker>(
+    () => ConnectionCheckerImpl(
+      serviceLocator(),
+    ),
+  );
 }
 
 void _initAuth() {
@@ -44,7 +44,7 @@ void _initAuth() {
     ..registerFactory<AuthRepository>(
       () => AuthRepositoryImpl(
         serviceLocator(),
-        // serviceLocator(),
+        serviceLocator(),
       ),
     )
     // Usecases
@@ -82,17 +82,17 @@ void _initSong() {
         serviceLocator(),
       ),
     )
-    // ..registerFactory<SongLocalDataSource>(
-    //   () => SongLocalDataSourceImpl(
-    //     serviceLocator(),
-    //   ),
-    // )
+    ..registerFactory<SongLocalDataSource>(
+      () => SongLocalDataSourceImpl(
+        serviceLocator(),
+      ),
+    )
     // Repository
     ..registerFactory<SongRepository>(
       () => SongRepositoryImpl(
         serviceLocator(),
-        // serviceLocator(),
-        // serviceLocator(),
+        serviceLocator(),
+        serviceLocator(),
       ),
     )
     // Usecases

@@ -6,43 +6,9 @@
     "configurations": [
         {
             "name": "Flutter",
-            "cwd": "MobileApplication\\flutter_app",
+            "cwd": "flutter_app",
             "request": "launch",
             "type": "dart",
-        },
-        {
-            "name": "flutter_app (profile mode)",
-            "cwd": "MobileApplication\\flutter_app",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "flutter_app (release mode)",
-            "cwd": "MobileApplication\\flutter_app",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "core",
-            "cwd": "MobileApplication\\flutter_app\\packages\\core",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "core (profile mode)",
-            "cwd": "MobileApplication\\flutter_app\\packages\\core",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "core (release mode)",
-            "cwd": "MobileApplication\\flutter_app\\packages\\core",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
         }
     ]
 }

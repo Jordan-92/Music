@@ -107,7 +107,7 @@ class _UploadNewSongPageState extends State<UploadNewSongPage> {
           } else if (state is SongUploadSuccess) {
             Navigator.pushAndRemoveUntil(
               context,
-              HomeScreen.route(),
+              HomePage.route(),
               (route) => false,
             );
           }

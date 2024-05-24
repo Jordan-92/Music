@@ -12,27 +12,30 @@ class LikedSongsButton extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
         ),
       ),
       child: Row(
         children: <Widget>[
-          Container(
-            width: 60.0,
-            height: 60.0,
-            decoration: const BoxDecoration(
-              shape: BoxShape.rectangle,
-              image: DecorationImage(
-                image: AssetImage('assets/liked.png'),
-                fit: BoxFit.cover,
-              ),
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(8.0),
+              bottomLeft: Radius.circular(8.0),
+            ),
+            child: Image.asset(
+              'assets/liked.png',
+              height: 60.0,
+              width: 60.0,
             ),
           ),
+          
           const SizedBox(width: 16.0),
           const Text(
             'Liked songs',
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
           ),
         ],
       ),

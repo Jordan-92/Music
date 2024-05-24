@@ -6,6 +6,7 @@ import 'package:flutter_app/features/song/presentation/bloc/song_bloc.dart';
 import 'package:flutter_app/features/song/presentation/pages/upload/upload_new_song_page.dart';
 import 'package:flutter_app/core/theme/app_palette.dart';
 import 'package:flutter_app/features/song/presentation/widgets/liked_songs_button.dart';
+import 'package:flutter_app/features/song/presentation/widgets/player.dart';
 import 'package:flutter_app/features/song/presentation/widgets/song_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -13,26 +14,17 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 part 'widgets/_home_app_bar.dart';
 part 'widgets/_home_tab_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static route() => MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
+        builder: (context) => const HomePage(),
       );
-  const HomeScreen({super.key});
+  const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const HomeView();
-  }
+  State<HomePage> createState() => _HomePageState();
 }
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
-
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
+class _HomePageState extends State<HomePage> {
   
   @override
   void initState() {
@@ -43,29 +35,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: GradientText(
-          'Good morning',
-          style: const TextStyle(
-            fontSize: 32.0,
-            fontWeight: FontWeight.bold,
-          ),
-          colors: const [
-            AppPallete.gradient1,
-            AppPallete.gradient2,
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context, UploadNewSongPage.route());
-            },
-            icon: const Icon(
-              CupertinoIcons.add_circled,
-            ),
-          ),
-        ],
-      ),
+      floatingActionButton: const Player(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: BlocConsumer<SongBloc, SongState>(
         listener: (context, state) {
           if (state is SongFailure) {
@@ -80,15 +51,40 @@ class _HomeViewState extends State<HomeView> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 16.0),
-                      LikedSongsButton(),
-                      SizedBox(height: 16.0),
-                      Text(
+                      const SizedBox(height: 30),
+                      Row(
+                        children: [
+                          GradientText(
+                            'Good morning',
+                            style: const TextStyle(
+                              fontSize: 32.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            colors: const [
+                              AppPallete.gradient1,
+                              AppPallete.gradient2,
+                            ],
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.push(context, UploadNewSongPage.route());
+                            },
+                            icon: const Icon(
+                              CupertinoIcons.add_circled,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16.0),
+                      const LikedSongsButton(),
+                      const SizedBox(height: 16.0),
+                      const Text(
                         "Newest songs",
                         style: TextStyle(
                           color: Colors.white,

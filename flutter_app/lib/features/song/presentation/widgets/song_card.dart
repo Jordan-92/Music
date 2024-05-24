@@ -16,7 +16,7 @@ class SongCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        // TODO: do it
+        // TODO: call play widget here
       },
       child: Container(
         width: cardWidth,
@@ -41,7 +41,7 @@ class SongCard extends StatelessWidget {
             Text(
               song.title,
               maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+              overflow: TextOverflow.ellipsis,  
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
