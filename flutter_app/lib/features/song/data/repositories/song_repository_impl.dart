@@ -21,13 +21,14 @@ class SongRepositoryImpl implements SongRepository {
   );
 
   @override
-  Future<Either<Failure, Song>> uploadSong({
+  Future<Either<Failure, Song>> uploadSong({//TODO: remove it when it's will be streaming
     required File image,
     required File mp3,
     required String author,
     required String title,
     required String user_id,
     required String language,
+    required Duration duration,
   }) async {
     try {
       if (!await (connectionChecker.isConnected)) {
@@ -40,6 +41,7 @@ class SongRepositoryImpl implements SongRepository {
         image_path: '',
         song_path: '',
         language: language,
+        duration: duration,
       );
 
       final imageUrl = await songRemoteDataSource.uploadSongImage(
@@ -71,15 +73,22 @@ class SongRepositoryImpl implements SongRepository {
   @override
   Future<Either<Failure, List<Song>>> getAllSongs() async {
     try {
+      final songs = await songRemoteDataSource.getAllSongs();
+      return right(songs);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<Song>>> getLikedSongs() async {
+    try {
       if (!await (connectionChecker.isConnected)) {
         final songs = songLocalDataSource.loadSongs();
-        if (songs.isEmpty) {
-          return left(Failure('No local songs available'));
-        }
         return right(songs);
       }
-      final songs = await songRemoteDataSource.getAllSongs();
-      songLocalDataSource.uploadLocalSongs(songs: songs); //TODO: remove it when it's will be streaming
+      final songs = await songRemoteDataSource.getLikedSongs();
+      songLocalDataSource.uploadLocalSongs(songs: songs);
       return right(songs);
     } on ServerException catch (e) {
       return left(Failure(e.message));

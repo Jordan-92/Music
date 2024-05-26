@@ -18,6 +18,7 @@ class UploadSong implements UseCase<Song, UploadSongParams> {
       author: params.author,
       user_id: params.user_id,
       language: params.language,
+      duration: params.duration,
     );
   }
 }
@@ -29,7 +30,8 @@ class UploadSongParams {
   final File image;
   final File mp3;
   final String language;
-
+  final Duration duration;
+  
   UploadSongParams({
     required this.user_id,
     required this.title,
@@ -37,5 +39,6 @@ class UploadSongParams {
     required this.image,
     required this.mp3,
     required this.language,
+    required this.duration,
   });
 }

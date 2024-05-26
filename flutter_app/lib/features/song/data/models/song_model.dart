@@ -8,6 +8,7 @@ class SongModel extends Song {
     required super.song_path,
     required super.image_path,
     required super.language,
+    required super.duration,
   });
 
   Map<String, dynamic> toJson() {
@@ -18,6 +19,7 @@ class SongModel extends Song {
       'song_path': song_path,
       'image_path': image_path,
       'language': language,
+      'duration': duration.inSeconds,
     };
   }
 
@@ -29,6 +31,7 @@ class SongModel extends Song {
       song_path: map['song_path'] as String,
       image_path: map['image_path'] as String,
       language: map['language'] as String,
+      duration: Duration(seconds: map['duration']),
     );
   }
 
@@ -39,6 +42,7 @@ class SongModel extends Song {
     String? song_path,
     String? image_path,
     String? language,
+    Duration? duration,
   }) {
     return SongModel(
       user_id: user_id ?? this.user_id,
@@ -47,6 +51,7 @@ class SongModel extends Song {
       song_path: song_path ?? this.song_path,
       image_path: image_path ?? this.image_path,
       language: language ?? this.language,
+      duration: duration ?? this.duration,
     );
   }
 }

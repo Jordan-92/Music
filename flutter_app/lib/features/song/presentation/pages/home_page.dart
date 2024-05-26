@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/core/common/widgets/loader.dart';
 import 'package:flutter_app/core/utils/show_snackbar.dart';
 import 'package:flutter_app/features/song/presentation/bloc/song_bloc.dart';
-import 'package:flutter_app/features/song/presentation/pages/upload/upload_new_song_page.dart';
+import 'package:flutter_app/features/song/presentation/pages/upload_new_song_page.dart';
 import 'package:flutter_app/core/theme/app_palette.dart';
 import 'package:flutter_app/features/song/presentation/widgets/liked_songs_button.dart';
-import 'package:flutter_app/features/song/presentation/widgets/player.dart';
+import 'package:flutter_app/features/player/presentation/widget/player.dart';
 import 'package:flutter_app/features/song/presentation/widgets/song_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-
-part 'widgets/_home_app_bar.dart';
-part 'widgets/_home_tab_bar.dart';
 
 class HomePage extends StatefulWidget {
   static route() => MaterialPageRoute(

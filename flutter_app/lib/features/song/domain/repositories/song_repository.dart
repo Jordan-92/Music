@@ -12,8 +12,10 @@ abstract interface class SongRepository {
     required String author,
     required String user_id,
     required String language,
+    required Duration duration,
 
   });
 
   Future<Either<Failure, List<Song>>> getAllSongs();
+  Future<Either<Failure, List<Song>>> getLikedSongs();
 }

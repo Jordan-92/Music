@@ -16,7 +16,7 @@ class SongCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        // TODO: call play widget here
+        //TODO: context.read<AudioPlayerBloc>().add(SetAudioEvent(song: song));
       },
       child: Container(
         width: cardWidth,

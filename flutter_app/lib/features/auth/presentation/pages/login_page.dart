@@ -3,10 +3,10 @@ import 'package:flutter_app/core/common/widgets/loader.dart';
 import 'package:flutter_app/core/theme/app_palette.dart';
 import 'package:flutter_app/core/utils/show_snackbar.dart';
 import 'package:flutter_app/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:flutter_app/features/auth/presentation/pages/SignUp/signup_page.dart';
+import 'package:flutter_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:flutter_app/features/auth/presentation/widget/auth_field.dart';
 import 'package:flutter_app/features/auth/presentation/widget/auth_gradient_button.dart';
-import 'package:flutter_app/features/song/presentation/pages/home/home_page.dart';
+import 'package:flutter_app/features/song/presentation/pages/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {

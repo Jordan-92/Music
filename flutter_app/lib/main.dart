@@ -1,18 +1,22 @@
+// import 'package:audio_handler/audio_handler.dart';
+// import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:flutter_app/core/network/connection_checker.dart';
 import 'package:flutter_app/core/theme/theme.dart';
+// import 'package:flutter_app/features/player/presentation/bloc/player_bloc.dart';
 import 'package:flutter_app/features/song/presentation/bloc/song_bloc.dart';
-import 'package:flutter_app/features/song/presentation/pages/home/home_page.dart';
-import 'package:flutter_app/features/song/presentation/pages/liked/liked_page.dart';
+import 'package:flutter_app/features/song/presentation/pages/home_page.dart';
+import 'package:flutter_app/features/song/presentation/pages/liked_page.dart';
 import 'package:flutter_app/init_dependencies.dart';
 import 'package:flutter_app/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:flutter_app/features/auth/presentation/pages/LogIn/login_page.dart';
+import 'package:flutter_app/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependencies();
+
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
@@ -24,6 +28,9 @@ void main() async {
       BlocProvider(
         create: (_) => serviceLocator<SongBloc>(),
       ),
+      // BlocProvider(
+      //   create: (_) => serviceLocator<AudioPlayerBloc>(),
+      // ),
     ],
     child: const MyApp(),
   ));
@@ -55,16 +62,14 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     if (!isInitialized) {
-      // Afficher un écran de chargement pendant l'initialisation
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Dj Pinguin',
         theme: AppTheme.darkThemeMode,
-        home: const Scaffold(
+        home: const Scaffold( //TODO: use common widget
           body: Center(child: CircularProgressIndicator()),
         ),
       );

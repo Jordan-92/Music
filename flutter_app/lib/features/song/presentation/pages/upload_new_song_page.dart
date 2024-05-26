@@ -7,7 +7,7 @@ import 'package:flutter_app/core/theme/app_palette.dart';
 import 'package:flutter_app/core/utils/pick_image.dart';
 import 'package:flutter_app/core/utils/show_snackbar.dart';
 import 'package:flutter_app/features/song/presentation/bloc/song_bloc.dart';
-import 'package:flutter_app/features/song/presentation/pages/home/home_page.dart';
+import 'package:flutter_app/features/song/presentation/pages/home_page.dart';
 import 'package:flutter_app/features/song/presentation/widgets/song_editor.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';

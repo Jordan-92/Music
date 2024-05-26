@@ -22,3 +22,5 @@ final class SongUpload extends SongEvent {
 }
 
 final class SongFetchAllSongs extends SongEvent {}
+
+final class SongFetchLikedSongs extends SongEvent {}

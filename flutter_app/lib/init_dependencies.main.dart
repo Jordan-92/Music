@@ -5,6 +5,7 @@ final serviceLocator = GetIt.instance;
 Future<void> initDependencies() async {
   _initAuth();
   _initSong();
+  // _initPlayer();
 
   final supabase = await Supabase.initialize(
     url: AppSecrets.supabaseUrl,
@@ -106,11 +107,29 @@ void _initSong() {
         serviceLocator(),
       ),
     )
+    ..registerFactory(
+      () => GetLikedSongs(
+        serviceLocator(),
+      ),
+    )
     // Bloc
     ..registerLazySingleton(
       () => SongBloc(
         uploadSong: serviceLocator(),
         getAllSongs: serviceLocator(),
+        getLikedSongs: serviceLocator(),
       ),
     );
 }
+
+// void _initPlayer() {
+//   // Bloc
+//   serviceLocator.registerLazySingleton(
+//     () => AudioPlayerBloc(
+//       _onLoadAudioPlayer: serviceLocator(),
+//       _onPlayAudio: serviceLocator(),
+//       _onPauseAudio: serviceLocator(),
+//       _onSetAudio: serviceLocator(),
+//     ),
+//   );
+// }

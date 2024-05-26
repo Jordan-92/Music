@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/song/presentation/pages/liked/liked_page.dart';
+import 'package:flutter_app/features/song/presentation/bloc/song_bloc.dart';
+import 'package:flutter_app/features/song/presentation/pages/liked_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LikedSongsButton extends StatelessWidget {
   const LikedSongsButton({super.key});
@@ -8,6 +10,7 @@ class LikedSongsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
+        context.read<SongBloc>().add(SongFetchLikedSongs());
         Navigator.push(context, LikedPage.route());
       },
       style: ElevatedButton.styleFrom(
