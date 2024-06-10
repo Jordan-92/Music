@@ -16,6 +16,9 @@ abstract class SongRemoteDataSource {
   });
   Future<List<SongModel>> getAllSongs();
   Future<List<SongModel>> getLikedSongs();
+  Future<void> likeSong(int songId);
+  Future<void> dislikeSong(int songId);
+  Future<bool> isSongLiked(int songId);
 }
 
 class SongRemoteDataSourceImpl implements SongRemoteDataSource {
@@ -104,11 +107,10 @@ class SongRemoteDataSourceImpl implements SongRemoteDataSource {
   @override
   Future<List<SongModel>> getLikedSongs() async {
     try {
-      // Récupère l'utilisateur connecté
       final user = supabaseClient.auth.currentUser;
 
       if (user == null) {
-        throw ServerException('User not logged in');
+        throw const ServerException('User not logged in');
       }
 
       final userId = user.id;
@@ -124,6 +126,75 @@ class SongRemoteDataSourceImpl implements SongRemoteDataSource {
           .map((song) => SongModel.fromJson(song['songs'] as Map<String, dynamic>))
           .toList();
     } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+  
+  @override
+  Future<void> likeSong(int songId) async {
+    try {
+      final user = supabaseClient.auth.currentUser;
+
+      if (user == null) {
+        throw const ServerException('User not logged in');
+      }
+
+      await supabaseClient.from('liked_songs').insert({
+        'user_id': user.id,
+        'song_id': songId,
+      });
+    } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<void> dislikeSong(int songId) async {
+    try {
+      final user = supabaseClient.auth.currentUser;
+
+      if (user == null) {
+        throw const ServerException('User not logged in');
+      }
+
+      await supabaseClient
+          .from('liked_songs')
+          .delete()
+          .eq('user_id', user.id)
+          .eq('song_id', songId);
+    } on PostgrestException catch (e) {
+      throw ServerException(e.message);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+  
+  @override
+  Future<bool> isSongLiked(int songId) async {
+    try {
+      final user = supabaseClient.auth.currentUser;
+
+      if (user == null) {
+        throw const ServerException('User not logged in');
+      }
+
+      final response = await supabaseClient
+          .from('liked_songs')
+          .select()
+          .eq('user_id', user.id)
+          .eq('song_id', songId)
+          .single();
+
+      // ignore: unnecessary_null_comparison
+      return response != null;
+    } on PostgrestException catch (e) {
+      if (e.code == 'PGRST116') {
+        return false;
+      }
       throw ServerException(e.message);
     } catch (e) {
       throw ServerException(e.toString());

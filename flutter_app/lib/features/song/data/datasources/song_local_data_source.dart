@@ -1,13 +1,17 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_app/core/error/exceptions.dart';
 import 'package:flutter_app/features/song/data/models/song_model.dart';
 import 'package:hive/hive.dart';
+import 'package:http/http.dart' as http;
+
 // TODO: only download liked songs
 abstract interface class SongLocalDataSource {
   void uploadLocalSongs({required List<SongModel> songs});
+  Future<Uint8List> downloadImage(String url);
   List<SongModel> loadSongs();
 }
 
-class SongLocalDataSourceImpl implements SongLocalDataSource {
+class SongLocalDataSourceImpl implements SongLocalDataSource{
   final Box box;
   SongLocalDataSourceImpl(this.box);
 
@@ -31,16 +35,39 @@ class SongLocalDataSourceImpl implements SongLocalDataSource {
   }
 
   @override
-  void uploadLocalSongs({required List<SongModel> songs}) {
+  Future<void> uploadLocalSongs({required List<SongModel> songs}) async {
     try {
       box.clear();
       for (int i = 0; i < songs.length; i++) {
-        box.put(i.toString(), songs[i].toJson());
+        final song = songs[i];
+        final imageUrl = song.image_path;
+        Uint8List? imageData;
+
+        if (imageUrl.isNotEmpty) {
+          imageData = await downloadImage(imageUrl);
+        }
+
+        // Save song data
+        final songData = song.copyWith(imageData: imageData).toJson();
+
+        box.put(i.toString(), songData);
       }
     } catch (e) {
-      if (kDebugMode) {
-        print('Error uploading songs to local storage: $e');
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<Uint8List> downloadImage(String url) async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        return response.bodyBytes;
+      } else {
+        throw Exception('Failed to download image');
       }
+    } catch (e) {
+      throw Exception('Failed to download image: $e');
     }
   }
 }

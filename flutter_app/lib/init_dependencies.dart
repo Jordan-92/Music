@@ -12,8 +12,11 @@ import 'package:flutter_app/features/song/data/datasources/song_local_data_sourc
 import 'package:flutter_app/features/song/data/datasources/song_remote_data_source.dart';
 import 'package:flutter_app/features/song/data/repositories/song_repository_impl.dart';
 import 'package:flutter_app/features/song/domain/repositories/song_repository.dart';
+import 'package:flutter_app/features/song/domain/usecases/dislike_song.dart';
 import 'package:flutter_app/features/song/domain/usecases/get_all_songs.dart';
 import 'package:flutter_app/features/song/domain/usecases/get_liked_song.dart';
+import 'package:flutter_app/features/song/domain/usecases/is_liked_song.dart';
+import 'package:flutter_app/features/song/domain/usecases/like_song.dart';
 import 'package:flutter_app/features/song/domain/usecases/upload_song.dart';
 // import 'package:flutter_app/features/player/presentation/bloc/player_bloc.dart';
 import 'package:flutter_app/features/song/presentation/bloc/song_bloc.dart';

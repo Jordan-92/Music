@@ -18,3 +18,13 @@ final class SongsDisplaySuccess extends SongState {
   final List<Song> songs;
   SongsDisplaySuccess(this.songs);
 }
+
+class SongLikeSuccess extends SongState {}
+
+class SongDislikeSuccess extends SongState {}
+
+class SongIsLikedSuccess extends SongState {
+  final bool isLiked;
+
+  SongIsLikedSuccess(this.isLiked);
+}

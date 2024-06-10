@@ -21,6 +21,24 @@ final class SongUpload extends SongEvent {
   });
 }
 
-final class SongFetchAllSongs extends SongEvent {}
+class SongFetchAllSongs extends SongEvent {}
 
-final class SongFetchLikedSongs extends SongEvent {}
+class SongFetchLikedSongs extends SongEvent {}
+
+class SongLike extends SongEvent {
+  final int songId;
+
+  SongLike({required this.songId});
+}
+
+class SongDislike extends SongEvent {
+  final int songId;
+
+  SongDislike({required this.songId});
+}
+
+class SongIsLiked extends SongEvent {
+  final int songId;
+
+  SongIsLiked({required this.songId});
+}

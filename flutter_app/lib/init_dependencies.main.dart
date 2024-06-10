@@ -112,12 +112,30 @@ void _initSong() {
         serviceLocator(),
       ),
     )
+    ..registerFactory(
+      () => LikeSong(
+        serviceLocator(),
+      ),
+    )
+    ..registerFactory(
+      () => DislikeSong(
+        serviceLocator(),
+      ),
+    )
+    ..registerFactory(
+      () => IsLikedSong(
+        serviceLocator(),
+      ),
+    )
     // Bloc
     ..registerLazySingleton(
       () => SongBloc(
         uploadSong: serviceLocator(),
         getAllSongs: serviceLocator(),
         getLikedSongs: serviceLocator(),
+        likeSong: serviceLocator(),
+        dislikeSong: serviceLocator(),
+        isLikedSong: serviceLocator(),
       ),
     );
 }

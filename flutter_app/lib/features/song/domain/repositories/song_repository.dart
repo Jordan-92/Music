@@ -18,4 +18,7 @@ abstract interface class SongRepository {
 
   Future<Either<Failure, List<Song>>> getAllSongs();
   Future<Either<Failure, List<Song>>> getLikedSongs();
+  Future<Either<Failure, void>> likeSong(int songId);
+  Future<Either<Failure, void>> dislikeSong(int songId);
+  Future<Either<Failure, bool>> isSongLiked(int songId);
 }

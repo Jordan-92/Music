@@ -47,9 +47,8 @@ dependencies:
   path_provider: ^2.1.0
   audio_service: ^0.18.13
   equatable: ^2.0.5
-  audio_handler:
-    path: packages/audio_handler
   rxdart_ext: ^0.2.9
+  http: ^1.2.1
 
 
 dev_dependencies:

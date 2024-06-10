@@ -14,6 +14,7 @@ class SongRepositoryImpl implements SongRepository {
   final SongRemoteDataSource songRemoteDataSource;
   final SongLocalDataSource songLocalDataSource;
   final ConnectionChecker connectionChecker;
+
   SongRepositoryImpl(
     this.songRemoteDataSource,
     this.songLocalDataSource,
@@ -21,7 +22,7 @@ class SongRepositoryImpl implements SongRepository {
   );
 
   @override
-  Future<Either<Failure, Song>> uploadSong({//TODO: remove it when it's will be streaming
+  Future<Either<Failure, Song>> uploadSong({
     required File image,
     required File mp3,
     required String author,
@@ -62,8 +63,8 @@ class SongRepositoryImpl implements SongRepository {
         song_path: songUrl,
       );
 
-
       final uploadedSong = await songRemoteDataSource.uploadSong(songModel);
+      
       return right(uploadedSong);
     } on ServerException catch (e) {
       return left(Failure(e.message));
@@ -79,7 +80,7 @@ class SongRepositoryImpl implements SongRepository {
       return left(Failure(e.message));
     }
   }
-  
+
   @override
   Future<Either<Failure, List<Song>>> getLikedSongs() async {
     try {
@@ -90,6 +91,45 @@ class SongRepositoryImpl implements SongRepository {
       final songs = await songRemoteDataSource.getLikedSongs();
       songLocalDataSource.uploadLocalSongs(songs: songs);
       return right(songs);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> likeSong(int songId) async {
+    try {
+      if (!await (connectionChecker.isConnected)) {
+        return left(Failure(Constants.noConnectionErrorMessage));
+      }
+      await songRemoteDataSource.likeSong(songId);
+      return right(null);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> dislikeSong(int songId) async {
+    try {
+      if (!await (connectionChecker.isConnected)) {
+        return left(Failure(Constants.noConnectionErrorMessage));
+      }
+      await songRemoteDataSource.dislikeSong(songId);
+      return right(null);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> isSongLiked(int songId) async {
+    try {
+      if (!await (connectionChecker.isConnected)) {
+        return left(Failure(Constants.noConnectionErrorMessage));
+      }
+      final isLiked = await songRemoteDataSource.isSongLiked(songId);
+      return right(isLiked);
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }

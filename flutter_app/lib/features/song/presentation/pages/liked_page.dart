@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/core/constants/constants.dart';
 import 'package:flutter_app/features/song/domain/entities/song.dart';
 import 'package:flutter_app/features/song/presentation/widgets/song_card_in_playlist.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,7 @@ class _LikedPageState extends State<LikedPage> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('No internet connection. Please try again later.'),
+          content: Text(Constants.noConnectionErrorMessage),
         ),
       );
     }
